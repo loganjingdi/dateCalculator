@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div >
       <h1>Date Calculator</h1>
       <title>DateCalculator</title>
         <a href="https://vitejs.dev" target="_blank">
