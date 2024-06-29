@@ -7,12 +7,12 @@ import dayjs from 'dayjs';
 
 let formatDay1:string , formatDay2:string;
 
-const onChange = (date, dateString) => {
+const onChange = (date:any, dateString:string | string[]) => {
   formatDay1 = dayjs(date).format('YYYY-MM-DD')
   console.log(date, dateString, formatDay1);
 }
 
-const onChange2 = (date, dataString) => {
+const onChange2 = (date:any) => {
   formatDay2 = dayjs(date).format('YYYY-MM-DD')
   let diffDay = dayjs(formatDay2).diff(formatDay1, 'day', true);
   console.log('diff', diffDay)
@@ -20,7 +20,6 @@ const onChange2 = (date, dataString) => {
 }
 
 function App() {
-  const [count, setCount] = useState(0)
   const [diffDay, setDiffDay] = useState(0);
 
 
@@ -45,7 +44,7 @@ function App() {
       </DatePicker>
       </div>
       <div className='endDate'>
-      请选择结束日期 <DatePicker onChange = {(date, dateString) => {setDiffDay(onChange2(date, dateString))}}></DatePicker>
+      请选择结束日期 <DatePicker onChange = {(date) => {setDiffDay(onChange2(date))}}></DatePicker>
       </div>
       <p className="read-the-docs">
         两个日期之间相差 {diffDay} 天
