@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Typography } from 'antd';
-import { Helmet } from 'react-helmet';
+
 
 const { Title } = Typography;
 
@@ -25,11 +25,9 @@ const CompoundInterestCalculator: React.FC = () => {
 
   return (
     <div style={{ padding: '20px' }}>
-      <Helmet>
-        <title>复利计算器 - 在线复利计算工具</title>
-        <meta name="description" content="使用我们的在线复利计算器，轻松计算复利终值和复利现值，支持按年、月、日多种复利方式计算。" />
-        <meta name="keywords" content="复利计算器, 在线复利计算, 复利终值, 复利现值" />
-      </Helmet>
+      <title>复利计算器 - 在线复利计算工具</title>
+      <meta name="description" content="使用我们的在线复利计算器，轻松计算复利终值和复利现值，支持按年、月、日多种复利方式计算。" />
+      <meta name="keywords" content="复利计算器, 在线复利计算, 复利终值, 复利现值" />
       <Title level={2}>复利计算器</Title>
       <Form layout="vertical" onFinish={calculateCompoundInterest}>
         <Form.Item label="存入本金(现值)" required>
