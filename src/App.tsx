@@ -1,56 +1,93 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { DatePicker } from 'antd'
-import dayjs from 'dayjs';
+// import React from 'react';
+import { Routes, Route, Outlet, Link } from "react-router-dom";
+// import TabContent from './components/tabContent';
+import InterestCalculator from './pages/InterestCalculator';
+import Home from './pages/Home'
 
-let formatDay1:string , formatDay2:string;
+// const routes: RouteObject[] = [
+//   {
+//     path: '/',
+//     element: <TabContent />,
+//     children: [
+//       { index: true, element: <Home /> },
+//       { path: 'InterestCalculator', element: <InterestCalculator /> },
+//     ],
+//   },
+// ];
 
-const onChange = (date:any, dateString:string | string[]) => {
-  formatDay1 = dayjs(date).format('YYYY-MM-DD')
-  console.log(date, dateString, formatDay1);
-}
+// const router = createBrowserRouter(routes)
 
-const onChange2 = (date:any) => {
-  formatDay2 = dayjs(date).format('YYYY-MM-DD')
-  let diffDay = dayjs(formatDay2).diff(formatDay1, 'day', true);
-  console.log('diff', diffDay)
-  return diffDay;
-}
-
-function App() {
-  const [diffDay, setDiffDay] = useState(0);
-
-
-
+// const App: React.FC = () => {
+//   return <RouterProvider router={router} />;
+// };
+export default function App() {
   return (
-    <>
-      <div >
-      <h1>Date Calculator</h1>
-      <title>DateCalculator</title>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      
- 
-      <div className='startDate'>
-      请选择开始日期 <DatePicker onChange = {onChange}>
-          
-      </DatePicker>
-      </div>
-      <div className='endDate'>
-      请选择结束日期 <DatePicker onChange = {(date) => {setDiffDay(onChange2(date))}}></DatePicker>
-      </div>
-      <p className="read-the-docs">
-        两个日期之间相差 {diffDay} 天
+    <div>
+      <h1>Basic Example</h1>
+
+      <p>
+        This example demonstrates some of the core features of React Router
+        including nested <code>&lt;Route&gt;</code>s,{" "}
+        <code>&lt;Outlet&gt;</code>s, <code>&lt;Link&gt;</code>s, and using a
+        "*" route (aka "splat route") to render a "not found" page when someone
+        visits an unrecognized URL.
       </p>
-    </>
-  )
+
+      {/* Routes nest inside one another. Nested route paths build upon
+            parent route paths, and nested route elements render inside
+            parent route elements. See the note about <Outlet> below. */}
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          {/* <Route path="about" element={<About />} /> */}
+          <Route path="InterestCalculator" element={<InterestCalculator />} />
+
+          {/* Using path="*"" means "match anything", so this route
+                acts like a catch-all for URLs that we don't have explicit
+                routes for. */}
+          <Route path="*" element={<NoMatch />} />
+        </Route>
+      </Routes>
+    </div>
+  );
+};
+
+function Layout() {
+  return (
+    <div>
+      {/* A "layout route" is a good place to put markup you want to
+          share across all the pages on your site, like navigation. */}
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">DataCalculator</Link>
+          </li>
+          <li>
+            <Link to="/InterestCalculator">InterestCalculator</Link>
+          </li>
+          <li>
+            <Link to="/nothing-here">Nothing Here</Link>
+          </li>
+        </ul>
+      </nav>
+
+      <hr />
+
+      {/* An <Outlet> renders whatever child route is currently active,
+          so you can think about this <Outlet> as a placeholder for
+          the child routes we defined above. */}
+      <Outlet />
+    </div>
+  );
 }
 
-export default App
+function NoMatch() {
+  return (
+    <div>
+      <h2>Nothing to see here!</h2>
+      <p>
+        <Link to="/">Go to the home page</Link>
+      </p>
+    </div>
+  );
+}
