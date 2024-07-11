@@ -4,7 +4,7 @@ import { DatePicker, Form, Typography, Flex, Button} from 'antd'
 import dayjs from 'dayjs';
 const { Title } = Typography;
 
-let formatDay1: string, formatDay2: string, diffedDay;
+let formatDay1: string, formatDay2: string;
 
 const onChange = (date: any, dateString: string | string[]) => {
   formatDay1 = dayjs(date).format('YYYY-MM-DD')
