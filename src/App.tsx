@@ -1,25 +1,8 @@
-// import React from 'react';
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-// import TabContent from './components/tabContent';
 import InterestCalculator from './pages/InterestCalculator';
-import Home from './pages/Home'
+import DateCalculator from './pages/Home';
+import MortgageCalculator from './pages/MortgageCalculator';
 
-// const routes: RouteObject[] = [
-//   {
-//     path: '/',
-//     element: <TabContent />,
-//     children: [
-//       { index: true, element: <Home /> },
-//       { path: 'InterestCalculator', element: <InterestCalculator /> },
-//     ],
-//   },
-// ];
-
-// const router = createBrowserRouter(routes)
-
-// const App: React.FC = () => {
-//   return <RouterProvider router={router} />;
-// };
 export default function App() {
   return (
     <div>
@@ -38,9 +21,10 @@ export default function App() {
             parent route elements. See the note about <Outlet> below. */}
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+          <Route index element={<MortgageCalculator />} />
           {/* <Route path="about" element={<About />} /> */}
           <Route path="InterestCalculator" element={<InterestCalculator />} />
+          <Route path="DateCalculator" element={<DateCalculator/>} />
 
           {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
@@ -60,10 +44,13 @@ function Layout() {
       <nav>
         <ul>
           <li>
-            <Link to="/">DataCalculator</Link>
+            <Link to="/">MortgageCalculator</Link>
           </li>
           <li>
             <Link to="/InterestCalculator">InterestCalculator</Link>
+          </li>
+          <li>
+            <Link to="/DateCalculator">DateCalculator</Link>
           </li>
           <li>
             <Link to="/nothing-here">Nothing Here</Link>
